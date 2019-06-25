@@ -1,0 +1,12 @@
+.idea/
+*.OLD
+*.ORIG
+*.swp
+__pycache__/
+.env
+*.sqlite3
+htmlcov/
+log/
+.coverage
+.pytest_cache
+

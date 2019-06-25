@@ -1,0 +1,9 @@
+# Base
+DJANGO_SETTINGS_MODULE=config.settings
+DEBUG=True
+TEST=True
+SECRET_KEY=changeme
+SERVE_STATIC_FILES=False
+SWAGGER_USE_HTTPS=False
+TIME_ZONE=UTC
+STATICFILES_STORAGE=django.contrib.staticfiles.storage.StaticFilesStorage
