@@ -9,6 +9,7 @@
 
 - [ ] MILESTONE 3
     - [ ] Create the view to import the CSVs (check import is right with django-admin.)
+    - [ ] Create tests for the view that imports the CSVs.
 
 - [ ] MILESTONE FINAL
     - [ ] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
