@@ -4,13 +4,13 @@ from rest_framework.serializers import ModelSerializer
 from core.models import Pants, PantsSizes
 
 
-class PantsSerializer(ModelSerializer):
+class PantsSerializer(ModelSerializer):  # pylint: disable=too-many-ancestors
     class Meta:
         model = Pants
         fields = '__all__'
 
 
-class PantsSizesSerializer(ModelSerializer):
+class PantsSizesSerializer(ModelSerializer):  # pylint: disable=too-many-ancestors
     # below is just to show on GET method
     pants = PantsSerializer(read_only=True)
 

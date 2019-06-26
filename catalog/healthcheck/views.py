@@ -6,5 +6,5 @@ class HealthCheckView(APIView):
 
     permission_classes = ()
 
-    def get(self, request):
+    def get(self, request):  # pylint: disable=no-self-use,unused-argument
         return Response()

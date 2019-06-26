@@ -1,7 +1,8 @@
+from urllib import parse
+
 import yaml
 
 from django.conf import settings
-from urllib import parse
 from rest_framework.compat import coreapi
 from rest_framework.schemas import SchemaGenerator
 from rest_framework.response import Response
@@ -53,7 +54,7 @@ class CustomSchemaGenerator(SchemaGenerator):
             try:
                 method_desc, raw_yaml_doc = func.__doc__.split('---')
                 yaml_doc = yaml.load(raw_yaml_doc)
-            except Exception:
+            except Exception:  # pylint: disable=broad-except
                 yaml_doc = None
 
         if yaml_doc and 'parameters' in yaml_doc:
@@ -116,7 +117,7 @@ def get_swagger_view(title=None, url=None, patterns=None, urlconf=None):
         ]
         schema = None
 
-        def get(self, request):
+        def get(self, request):  # pylint: disable=no-self-use
             generator = CustomSchemaGenerator(
                 title=title,
                 url=url,
