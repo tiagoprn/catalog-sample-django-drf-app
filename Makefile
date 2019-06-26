@@ -77,5 +77,5 @@ admin_ui_superuser:
 	python $(DJANGO_CMD) createsuperuser
 
 lint:
-	@pylint --rcfile=.pylintrc catalog/*
+	@pylint -r y --rcfile=.pylintrc catalog/*
 

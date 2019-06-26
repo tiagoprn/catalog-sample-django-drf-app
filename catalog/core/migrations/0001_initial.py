@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,13 +14,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Pants',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('brand', models.CharField(max_length=20)),
-                ('model', models.CharField(choices=[('regular', 'REGULAR'), ('skinny', 'SKINNY'), ('slim', 'SLIM'), ('fit', 'FIT'), ('cargo', 'CARGO')], max_length=20)),
+                ('model', models.CharField(
+                    choices=[('regular', 'REGULAR'), ('skinny', 'SKINNY'),
+                             ('slim', 'SLIM'), ('fit', 'FIT'),
+                             ('cargo', 'CARGO')], max_length=20)),
                 ('color', models.CharField(max_length=20)),
-                ('material', models.CharField(choices=[('jeans', 'JEANS'), ('tracksuit', 'TRACKSUIT'), ('twill', 'TWILL')], max_length=20)),
-                ('cost_price', models.DecimalField(decimal_places=2, max_digits=8)),
-                ('sell_price', models.DecimalField(decimal_places=2, max_digits=8)),
+                ('material', models.CharField(
+                    choices=[('jeans', 'JEANS'), ('tracksuit', 'TRACKSUIT'),
+                             ('twill', 'TWILL')], max_length=20)),
+                ('cost_price',
+                 models.DecimalField(decimal_places=2, max_digits=8)),
+                ('sell_price',
+                 models.DecimalField(decimal_places=2, max_digits=8)),
                 ('profit', models.DecimalField(decimal_places=2, max_digits=8)),
                 ('taxes', models.DecimalField(decimal_places=2, max_digits=8)),
                 ('is_active', models.BooleanField()),
@@ -32,16 +39,25 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PantsSizes',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('size', models.CharField(choices=[('PP', 'PP'), ('P', 'P'), ('M', 'M'), ('G', 'G'), ('GG', 'GG'), ('XG', 'XG'), (30, 30), (32, 32), (34, 34), (36, 36), (38, 38), (40, 40), (42, 42), (44, 44), (46, 46), (48, 48), (50, 50), (52, 52), (54, 54), (56, 56), (58, 58)], max_length=2)),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
+                ('size', models.CharField(
+                    choices=[('PP', 'PP'), ('P', 'P'), ('M', 'M'), ('G', 'G'),
+                             ('GG', 'GG'), ('XG', 'XG'), (30, 30), (32, 32),
+                             (34, 34), (36, 36), (38, 38), (40, 40), (42, 42),
+                             (44, 44), (46, 46), (48, 48), (50, 50), (52, 52),
+                             (54, 54), (56, 56), (58, 58)], max_length=2)),
                 ('is_active', models.BooleanField()),
                 ('created', models.DateTimeField()),
                 ('updated', models.DateTimeField()),
-                ('pants', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='pants', to='core.Pants')),
+                ('pants',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   related_name='pants', to='core.Pants')),
             ],
         ),
         migrations.AddConstraint(
             model_name='pantssizes',
-            constraint=models.UniqueConstraint(fields=('pants', 'size'), name='pants_size'),
+            constraint=models.UniqueConstraint(fields=('pants', 'size'),
+                                               name='pants_size'),
         ),
     ]
