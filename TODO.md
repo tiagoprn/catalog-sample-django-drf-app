@@ -1,10 +1,7 @@
 - [ ] MILESTONE 1
     - [x] Rename the "product" model to "pants".
     - [x] Fix issues on `make lint`
-    - [ ] Extract the lists used to validate the ChoiceFields to constant classes.
     - [ ] Create tests for the serializers and views.
-    - [ ] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
-      the image)
 
 
 - [ ] MILESTONE 2
@@ -14,6 +11,9 @@
     - [ ] Create the view to import the CSVs (check import is right with django-admin.)
 
 - [ ] MILESTONE FINAL
+    - [ ] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
+      the image)
+    - [ ] Extract the lists used to validate the ChoiceFields to constant classes.
     - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
       Dockerfile)
     - [ ] Create a Makefile command to run the building from the container from previous step, push
