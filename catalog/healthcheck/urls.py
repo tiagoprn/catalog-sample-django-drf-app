@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import HealthCheckView
+from healthcheck.views import HealthCheckView
 
 urlpatterns = [
     url(

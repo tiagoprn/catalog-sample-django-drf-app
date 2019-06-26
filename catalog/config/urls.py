@@ -31,5 +31,9 @@ urlpatterns = [
     path(
         'healthcheck/',
         include(('healthcheck.urls', 'healthcheck'), namespace='healthcheck')
-    )
+    ),
+    path(
+        'core/',
+        include(('core.urls', 'core'), namespace='core')
+    ),
 ]
