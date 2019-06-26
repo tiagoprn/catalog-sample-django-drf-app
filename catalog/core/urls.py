@@ -1,10 +1,9 @@
-from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
 
-from core.views import ProductViewSet, ProductSizesViewSet
+from core.views import PantsViewSet, PantsSizesViewSet
 
 router = DefaultRouter()
-router.register(r'products', ProductViewSet)
-router.register(r'product_sizes', ProductSizesViewSet)
+router.register(r'pants', PantsViewSet)
+router.register(r'pants_sizes', PantsSizesViewSet)
 
 urlpatterns = router.urls

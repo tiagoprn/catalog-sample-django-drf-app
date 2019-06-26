@@ -1,14 +1,14 @@
 from rest_framework.viewsets import ModelViewSet
 
-from core.models import Product, ProductSizes
-from core.serializers import ProductSerializer, ProductSizesSerializer
+from core.models import Pants, PantsSizes
+from core.serializers import PantsSerializer, PantsSizesSerializer
 
 
-class ProductViewSet(ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+class PantsViewSet(ModelViewSet):
+    queryset = Pants.objects.all()
+    serializer_class = PantsSerializer
 
 
-class ProductSizesViewSet(ModelViewSet):
-    queryset = ProductSizes.objects.all()
-    serializer_class = ProductSizesSerializer
+class PantsSizesViewSet(ModelViewSet):
+    queryset = PantsSizes.objects.all()
+    serializer_class = PantsSizesSerializer

@@ -25,7 +25,7 @@ SIZE_CHOICE_FIELDS = [
 ]
 
 
-class Product(models.Model):
+class Pants(models.Model):
     brand = models.CharField(max_length=20)
     model = models.CharField(max_length=20, choices=MODEL_CHOICE_FIELD)
     color = models.CharField(max_length=20)
@@ -39,10 +39,10 @@ class Product(models.Model):
     updated = models.DateTimeField()
 
 
-class ProductSizes(models.Model):
-    product = models.ForeignKey(
-        Product,
-        related_name='product',
+class PantsSizes(models.Model):
+    pants = models.ForeignKey(
+        Pants,
+        related_name='pants',
         on_delete=models.CASCADE
     )
     size = models.CharField(max_length=2, choices=SIZE_CHOICE_FIELDS)
@@ -53,7 +53,7 @@ class ProductSizes(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['product', 'size'],
-                name='product_size'
+                fields=['pants', 'size'],
+                name='pants_size'
             )
         ]

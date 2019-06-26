@@ -1,5 +1,6 @@
 - [ ] MILESTONE 1
     - [ ] Rename the "product" model to "pants".
+    - [ ] Extract the lists used to validate the ChoiceFields to constant classes.
     - [ ] Create tests for the serializers and views.
     - [ ] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
       the image)

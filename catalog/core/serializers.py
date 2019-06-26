@@ -1,24 +1,24 @@
 from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.serializers import ModelSerializer
 
-from core.models import Product, ProductSizes
+from core.models import Pants, PantsSizes
 
 
-class ProductSerializer(ModelSerializer):
+class PantsSerializer(ModelSerializer):
     class Meta:
-        model = Product
+        model = Pants
         fields = '__all__'
 
 
-class ProductSizesSerializer(ModelSerializer):
+class PantsSizesSerializer(ModelSerializer):
     # below is just to show on GET method
-    product = ProductSerializer(read_only=True)
+    pants = PantsSerializer(read_only=True)
 
     # below is to support writing to montadora_id on POST, PUT, PATCH, DELETE
-    product_id = PrimaryKeyRelatedField(
-        queryset=Product.objects.all(), source='product', write_only=True)
+    pants_id = PrimaryKeyRelatedField(
+        queryset=Pants.objects.all(), source='pants', write_only=True)
 
     class Meta:
-        model = ProductSizes
-        fields = ('id', 'size', 'product', 'product_id',
+        model = PantsSizes
+        fields = ('id', 'size', 'pants', 'pants_id',
                   'is_active', 'created', 'updated')
