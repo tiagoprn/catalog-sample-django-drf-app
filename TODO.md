@@ -1,8 +1,8 @@
 - [ ] MILESTONE 1
+    - [ ] Rename the "product" model to "pants".
+    - [ ] Create tests for the serializers and views.
     - [ ] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
       the image)
-    - [ ] Implement the REST Framework serializers and REST views
-
 
 
 - [ ] MILESTONE FINAL
@@ -15,3 +15,7 @@
       postgres templates.
     - [ ] Update README.md with instructions to run locally from the docker-compose image.
 
+- [X] KICKSTART (branch master)
+    - [x] Create the django project structure, with a `health_check` app to bootstrap swagger.
+    - [x] Create a `core` app, with will contain the product model. Implement the REST Framework
+      serializers and REST views.
