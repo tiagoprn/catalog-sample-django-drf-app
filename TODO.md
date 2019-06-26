@@ -16,7 +16,7 @@
       the image)
     - [ ] Extract the lists used to validate the ChoiceFields to constant classes.
     - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
-      Dockerfile)
+      Dockerfile - the skeleton is here at tmp/)
     - [ ] Create a Makefile command to run the building from the container from previous step, push
       to dockerhub
     - [ ] Add postgres and dj-database-url
