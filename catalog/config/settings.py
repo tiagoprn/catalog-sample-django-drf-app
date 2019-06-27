@@ -100,7 +100,10 @@ STATICFILES_STORAGE = config('STATICFILES_STORAGE')
 LOGIN_URL = '/admin/login/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'core.pagination.StandardResultsSetPagination'
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.StandardResultsSetPagination',
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    )
 }
 
 SWAGGER_SETTINGS = {
