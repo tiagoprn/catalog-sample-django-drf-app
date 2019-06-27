@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
+from core.business import import_csv
 from core.filters import PantsFilter
 from core.models import Pants
 from core.pagination import StandardResultsSetPagination
@@ -28,11 +29,14 @@ class CSVImportView(APIView):
                 data={'message': 'No file uploaded.'}
             )
         # do some stuff with uploaded file
-        lines = []
-        for line in file_obj.readlines():
-            lines.append(line)
+        result = import_csv(file_obj)
+
+        if result['successful_imports'] > 0:
+            response_status = status.HTTP_200_OK
+        else:
+            response_status = status.HTTP_422_UNPROCESSABLE_ENTITY
 
         return Response(
-            status=status.HTTP_200_OK,  # Change to http 204
-            data={'contents': lines}
+            status=response_status,
+            data=result
         )
