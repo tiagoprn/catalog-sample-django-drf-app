@@ -1,3 +1,7 @@
+from rest_framework import status
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from core.filters import PantsFilter
@@ -12,9 +16,23 @@ class PantsViewSet(ModelViewSet):  # pylint: disable=too-many-ancestors
     pagination_class = StandardResultsSetPagination
     filterset_class = PantsFilter
 
-    # TODO: Check if below should be enabled
-    # def get_queryset(self):
-    #     min_profit = self.kwargs.get('min_profit')
-    #     if min_profit:
-    #         self.queryset = self.queryset.filter(min_profit=min_profit)
-    #     return self.queryset
+
+class CSVImportView(APIView):
+    parser_classes = (FileUploadParser,)
+
+    def post(self, request, format='csv'):
+        file_obj = request.FILES.get('file')
+        if not file_obj:
+            return Response(
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                data={'message': 'No file uploaded.'}
+            )
+        # do some stuff with uploaded file
+        lines = []
+        for line in file_obj.readlines():
+            lines.append(line)
+
+        return Response(
+            status=status.HTTP_200_OK,  # Change to http 204
+            data={'contents': lines}
+        )
