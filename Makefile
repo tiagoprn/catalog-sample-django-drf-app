@@ -14,7 +14,7 @@ help:
 	@echo -e " make check-debugger \n\t Find ipdb references.\n"
 	@echo -e " make test-ci \n\t Run test suite.\n"
 	@echo -e " make test \n\t Run test suite with debugger support.\n"
-	@echo -e " make test-matching \n\t Run a specific test. e.g. 'make test-matching test=test_function_name' \n"
+	@echo -e " make singletest \n\t Run a specific test. e.g. 'make singletest name=test_function_name' \n"
 	@echo -e " make coverage \n\t Run the coverage reports.\n"
 	@echo -e " make shell \n\t Run a python shell.\n"
 	@echo -e " make runserver \n\t Run the python app (development server).\n"
@@ -59,9 +59,9 @@ test: SHELL:=/bin/bash
 test: clean
 	py.test catalog --ds=$(SETTINGS) -s -vvv --pdbcls=IPython.core.debugger:Pdb
 
-test-matching: SHELL:=/bin/bash
-test-matching: clean
-	py.test catalog -k $(test) --ds=$(SETTINGS) -s -vvv --pdbcls=IPython.core.debugger:Pdb
+singletest: SHELL:=/bin/bash
+singletest: clean
+	py.test catalog -k $(name) --ds=$(SETTINGS) -s -vvv --pdbcls=IPython.core.debugger:Pdb
 
 coverage: SHELL:=/bin/bash
 coverage: clean
