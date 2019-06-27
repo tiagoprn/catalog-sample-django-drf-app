@@ -1,7 +1,7 @@
 import pytest
 
 from core.models import Pants
-from core.tests.factories import PantsFactory, PantsSizesFactory
+from core.tests.factories import PantsFactory
 
 
 class TestPantApi:
@@ -36,8 +36,7 @@ class TestPantApi:
             'material': 'jeans',
             'cost_price': 24.0,
             'sell_price': 99.0,
-            'taxes': 12.0,
-            'is_active': True,
+            'taxes': 12.0
         }
 
         response = api_client.post(
@@ -54,18 +53,3 @@ class TestPantApi:
                 - (payload['cost_price'] + payload['taxes'])
         )
         assert pants.profit == expected_profit
-
-
-class TestPantsSizeApi:
-
-    @pytest.mark.django_db
-    def test_get_pants_size(self, api_client):
-        pants = PantsFactory.create()
-        pants_sizes = PantsSizesFactory.create(pants=pants)
-
-        response = api_client.get(f'/core/pants/{pants.id}/pants_sizes/')
-        data = response.json()
-
-        assert response.status_code == 200
-        assert isinstance(data, list)
-        assert data[0]['size'] == pants_sizes.size
