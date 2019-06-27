@@ -57,11 +57,11 @@ test-ci: clean
 
 test: SHELL:=/bin/bash
 test: clean
-	py.test catalog --ds=$(SETTINGS) -s -vvv
+	py.test catalog --ds=$(SETTINGS) -s -vvv --pdbcls=IPython.core.debugger:Pdb
 
 test-matching: SHELL:=/bin/bash
 test-matching: clean
-	py.test catalog -k $(test) --ds=$(SETTINGS) -s -vvv
+	py.test catalog -k $(test) --ds=$(SETTINGS) -s -vvv --pdbcls=IPython.core.debugger:Pdb
 
 coverage: SHELL:=/bin/bash
 coverage: clean
