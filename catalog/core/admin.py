@@ -7,7 +7,15 @@ from core.models import Pants
 
 @admin.register(Pants)
 class PantsAdmin(admin.ModelAdmin):
-    actions = None
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
     list_per_page = PAGINATION_ITEMS_PER_PAGE
     list_display = ('id', 'brand', 'model', 'color', 'material',
                     'cost_price', 'sell_price', 'profit', 'taxes',
@@ -15,27 +23,12 @@ class PantsAdmin(admin.ModelAdmin):
     list_filter = ('created', 'updated', )
     search_fields = list_display
 
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.list_display_links = (None, )
-
-
-# class LogEntryAdmin(ModelAdmin):
-#     actions = None
-#     list_display = (
-#         'action_time', 'user',
-#         'content_type', 'object_repr',
-#         'change_message')
-#
-#     search_fields = ['=user__username', ]
-#     fieldsets = [
-#         (None, {'fields':()}),
-#         ]
-#
-#     def __init__(self, *args, **kwargs):
-#         super(LogEntryAdmin, self).__init__(*args, **kwargs)
-#         self.list_display_links = (None, )
-
+# Removes the default apps from the apps menu
 admin.site.unregister(User)
 admin.site.unregister(Group)
+
+# Change the site header, title and index title
+admin.site.site_header = "Pants Catalog"
+admin.site.site_title = "Pants Catalog Navigation Site"
+admin.site.index_title = ('Click the Pants link below to '
+                          'navigate through the database.')
