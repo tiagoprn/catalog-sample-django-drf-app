@@ -9,7 +9,7 @@ from core.models import (
 )
 
 
-class PantsFactory(DjangoModelFactory):
+class PantsFactory(DjangoModelFactory):  # pylint: disable=too-many-ancestors
     class Meta:
         model = Pants
 

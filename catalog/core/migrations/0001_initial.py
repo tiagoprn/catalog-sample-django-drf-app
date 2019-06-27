@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -14,14 +13,24 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Pants',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('brand', models.CharField(max_length=20)),
-                ('model', models.CharField(choices=[('regular', 'REGULAR'), ('skinny', 'SKINNY'), ('slim', 'SLIM'), ('fit', 'FIT'), ('cargo', 'CARGO')], max_length=20)),
+                ('model', models.CharField(
+                    choices=[('regular', 'REGULAR'), ('skinny', 'SKINNY'),
+                             ('slim', 'SLIM'), ('fit', 'FIT'),
+                             ('cargo', 'CARGO')], max_length=20)),
                 ('color', models.CharField(max_length=20)),
-                ('material', models.CharField(choices=[('jeans', 'JEANS'), ('tracksuit', 'TRACKSUIT'), ('twill', 'TWILL')], max_length=20)),
-                ('cost_price', models.DecimalField(decimal_places=2, max_digits=8)),
-                ('sell_price', models.DecimalField(decimal_places=2, max_digits=8)),
-                ('profit', models.DecimalField(blank=True, decimal_places=2, max_digits=8, null=True)),
+                ('material', models.CharField(
+                    choices=[('jeans', 'JEANS'), ('tracksuit', 'TRACKSUIT'),
+                             ('twill', 'TWILL')], max_length=20)),
+                ('cost_price',
+                 models.DecimalField(decimal_places=2, max_digits=8)),
+                ('sell_price',
+                 models.DecimalField(decimal_places=2, max_digits=8)),
+                ('profit',
+                 models.DecimalField(blank=True, decimal_places=2, max_digits=8,
+                                     null=True)),
                 ('taxes', models.DecimalField(decimal_places=2, max_digits=8)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
