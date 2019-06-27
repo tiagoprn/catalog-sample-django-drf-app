@@ -15,9 +15,10 @@ class TestPantApi:
         data = response.json()
 
         assert response.status_code == 200
-        assert isinstance(data, list)
-        assert data[0]['brand'] == pants.brand
-        assert data[0]['color'] == pants.color
+        assert data['count'] == 1
+        result = data['results'][0]
+        assert result['brand'] == pants.brand
+        assert result['color'] == pants.color
 
     @staticmethod
     @pytest.mark.django_db
@@ -26,8 +27,7 @@ class TestPantApi:
         data = response.json()
 
         assert response.status_code == 200
-        assert isinstance(data, list)
-        assert data == []
+        assert data['count'] == 0
 
     @staticmethod
     @pytest.mark.django_db

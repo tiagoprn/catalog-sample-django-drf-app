@@ -99,6 +99,10 @@ STATICFILES_STORAGE = config('STATICFILES_STORAGE')
 
 LOGIN_URL = '/admin/login/'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.StandardResultsSetPagination'
+}
+
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,
     'SECURITY_DEFINITIONS': {
