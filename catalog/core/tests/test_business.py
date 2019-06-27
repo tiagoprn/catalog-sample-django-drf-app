@@ -10,6 +10,8 @@ ERROR_FILE_1 = os.path.join(PROJECT_ROOT, 'contrib/sample_error_1.csv')
 ERROR_FILE_2 = os.path.join(PROJECT_ROOT, 'contrib/sample_error_2.csv')
 ERROR_FILE_3 = os.path.join(PROJECT_ROOT, 'contrib/sample_error_3.csv')
 SUCCESS_FILE_1 = os.path.join(PROJECT_ROOT, 'contrib/sample_success_1.csv')
+SUCCESS_FILE_2 = os.path.join(PROJECT_ROOT, 'contrib/sample_success_2.csv')
+SUCCESS_FILE_3 = os.path.join(PROJECT_ROOT, 'contrib/sample_success_3.csv')
 
 
 @pytest.mark.django_db
@@ -54,6 +56,19 @@ def test_csv_import_with_errors_when_not_all_fields_on_second_line():
 
 @pytest.mark.django_db
 def test_csv_import_with_success():
+    with open(SUCCESS_FILE_1, 'r') as success_file:
+        result = import_csv(success_file)
+        assert Pants.objects.count() > 0
+        assert result['successful_imports'] == 1
+        assert result['total_errors'] == 0
+
+
+@pytest.mark.parametrize(('file_name'), [
+    (SUCCESS_FILE_2),
+    (SUCCESS_FILE_3)
+])
+@pytest.mark.django_db
+def test_csv_import_with_success_when_double_quotes_on_fields(file_name):
     with open(SUCCESS_FILE_1, 'r') as success_file:
         result = import_csv(success_file)
         assert Pants.objects.count() > 0

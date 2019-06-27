@@ -19,7 +19,8 @@ def import_csv(file_obj):
 
     for index, line in enumerate(file_obj.readlines()):
         line_number = index + 1
-        line_fields = line.replace('\n', '').split(CSV_SEPARATOR)
+        line_fields = line.replace('\n', '').replace(
+            '"', '').split(CSV_SEPARATOR)
 
         if line_number == 1:
             if not set(header) == set(line_fields):
