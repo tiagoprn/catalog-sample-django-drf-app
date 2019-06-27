@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import User, Group
 
 from config.settings import PAGINATION_ITEMS_PER_PAGE
 from core.models import Pants
@@ -35,3 +36,6 @@ class PantsAdmin(admin.ModelAdmin):
 #     def __init__(self, *args, **kwargs):
 #         super(LogEntryAdmin, self).__init__(*args, **kwargs)
 #         self.list_display_links = (None, )
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
