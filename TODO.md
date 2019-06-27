@@ -7,7 +7,10 @@
 
 - [ ] MILESTONE 2
     - [x] pagination on the pants get (all) view.
-    - [ ] django-filter on the pants get (all) view.
+    - [x] django-filter on the pants get (all) view.
+    - [ ] Delete current sqlite database, generate another and 
+          re-run the factory to get more sane values to explore the API.   
+    - [ ] check pagination with the django filter (check with 2 filters)
 
 - [ ] MILESTONE 3
     - [ ] Enable and configure django-admin.
