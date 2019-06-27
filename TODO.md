@@ -8,9 +8,9 @@
 - [ ] MILESTONE 2
     - [x] pagination on the pants get (all) view.
     - [x] django-filter on the pants get (all) view.
-    - [ ] Delete current sqlite database, generate another and 
+    - [x] Delete current sqlite database, generate another and 
           re-run the factory to get more sane values to explore the API.   
-    - [ ] check pagination with the django filter (check with 2 filters)
+    - [x] check pagination with the django filter (check with 2 filters)
 
 - [ ] MILESTONE 3
     - [ ] Enable and configure django-admin.
@@ -23,6 +23,7 @@
     - [ ] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
       the image)
     - [ ] Extract the lists used to validate the ChoiceFields to constant classes.
+    - [ ] See why the choicefields on factory are not persisting just the value, but the whole tuple.
     - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
       Dockerfile - the skeleton is here at tmp/)
     - [ ] Create a Makefile command to run the building from the container from previous step, push
