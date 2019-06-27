@@ -1,13 +1,17 @@
 - [ ] MILESTONE 1
     - [x] Rename the "product" model to "pants".
     - [x] Fix issues on `make lint`
-    - [ ] Create tests for the serializers and views.
-
+    - [x] Create tests for the views.
+        - [x] get
+        - [x] post
 
 - [ ] MILESTONE 2
-    - [ ] Enable and configure django-admin.
+    - [ ] django-filter and pagination on the pants get (all) view.
 
 - [ ] MILESTONE 3
+    - [ ] Enable and configure django-admin.
+
+- [ ] MILESTONE 4
     - [ ] Create the view to import the CSVs (check import is right with django-admin.)
     - [ ] Create tests for the view that imports the CSVs.
 
@@ -19,6 +23,11 @@
       Dockerfile - the skeleton is here at tmp/)
     - [ ] Create a Makefile command to run the building from the container from previous step, push
       to dockerhub
+    - [ ] Finish tests for the views.
+        - [ ] put
+        - [ ] patch
+        - [ ] delete
+        - [ ] get with pagination and filters]
     - [ ] Add postgres and dj-database-url
     - [ ] Create a docker-compose to run the app image (catalog) and postgresql, using my previous
       postgres templates.

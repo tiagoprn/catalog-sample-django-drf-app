@@ -28,7 +28,7 @@ class TestPantApi:
         assert len(data) == 0
 
     @pytest.mark.django_db
-    def test_create_pants(self, api_client):
+    def test_post_pants(self, api_client):
         payload = {
             'brand': 'Calvin Klein',
             'model': 'regular',
