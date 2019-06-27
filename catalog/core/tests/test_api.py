@@ -7,7 +7,7 @@ from core.tests.factories import PantsFactory, PantsSizesFactory
 class TestPantApi:
 
     @pytest.mark.django_db
-    def test_get_pant(self, api_client):
+    def test_get_pants(self, api_client):
         pants = PantsFactory.create()
 
         response = api_client.get('/core/pants/')
@@ -19,7 +19,7 @@ class TestPantApi:
         assert data[0]['color'] == pants.color
 
     @pytest.mark.django_db
-    def test_get_pant_empty_list(self, api_client):
+    def test_get_pants_empty_list(self, api_client):
         response = api_client.get('/core/pants/')
         data = response.json()
 
@@ -28,7 +28,7 @@ class TestPantApi:
         assert len(data) == 0
 
     @pytest.mark.django_db
-    def test_creat_pant(self, api_client):
+    def test_create_pants(self, api_client):
         payload = {
             'brand': 'Calvin Klein',
             'model': 'regular',
