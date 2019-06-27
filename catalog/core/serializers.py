@@ -1,24 +1,21 @@
-from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.serializers import ModelSerializer
 
 from core.models import Pants, PantsSizes
 
 
-class PantsSerializer(ModelSerializer):  # pylint: disable=too-many-ancestors
-    class Meta:
-        model = Pants
-        fields = '__all__'
-
-
 class PantsSizesSerializer(ModelSerializer):  # pylint: disable=too-many-ancestors
-    # below is just to show on GET method
-    pants = PantsSerializer(read_only=True)
-
-    # below is to support writing to montadora_id on POST, PUT, PATCH, DELETE
-    pants_id = PrimaryKeyRelatedField(
-        queryset=Pants.objects.all(), source='pants', write_only=True)
-
     class Meta:
         model = PantsSizes
-        fields = ('id', 'size', 'pants', 'pants_id',
-                  'is_active', 'created', 'updated')
+        fields = ('size', 'created', 'updated')
+
+
+class PantsSerializer(ModelSerializer):  # pylint: disable=too-many-ancestors
+    pants_sizes = PantsSizesSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Pants
+        fields = (
+            'id', 'brand', 'model', 'color', 'material', 'cost_price',
+            'sell_price', 'profit', 'taxes', 'is_active', 'created', 'updated',
+            'pants_sizes'
+        )
