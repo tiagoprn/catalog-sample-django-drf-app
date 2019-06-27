@@ -20,5 +20,3 @@ class PantsFactory(DjangoModelFactory):  # pylint: disable=too-many-ancestors
     cost_price = FuzzyDecimal(low=100, high=499)
     sell_price = FuzzyDecimal(low=500, high=999)
     taxes = FuzzyDecimal(low=1, high=99)
-    created = datetime.now()
-    updated = datetime.now()
