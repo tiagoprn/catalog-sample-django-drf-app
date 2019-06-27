@@ -1,10 +1,13 @@
 from django.contrib import admin
+
+from config.settings import PAGINATION_ITEMS_PER_PAGE
 from core.models import Pants
 
 
 @admin.register(Pants)
 class PantsAdmin(admin.ModelAdmin):
     actions = None
+    list_per_page = PAGINATION_ITEMS_PER_PAGE
     list_display = ('id', 'brand', 'model', 'color', 'material',
                     'cost_price', 'sell_price', 'profit', 'taxes',
                     'created', 'updated')
