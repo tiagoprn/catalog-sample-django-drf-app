@@ -74,7 +74,7 @@ runserver: clean
 	$(DJANGO_CMD) runserver 0.0.0.0:8000
 
 admin_ui_superuser:
-	python $(DJANGO_CMD) createsuperuser
+	$(DJANGO_CMD) createsuperuser
 
 lint:
 	@pylint -r y --rcfile=.pylintrc catalog/*
