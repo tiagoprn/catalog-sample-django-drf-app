@@ -20,7 +20,7 @@
 - [x] MILESTONE 3
     - [x] Enable and configure django-admin.
 
-- [ ] MILESTONE 4
+- [x] MILESTONE 4
     - [x] Create the view to import the CSVs (check import is right with django-admin.)
     - [x] Create tests for the view that imports the CSVs.
 
