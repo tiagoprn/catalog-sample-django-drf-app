@@ -4,10 +4,12 @@ import pytest
 
 from config.settings import PROJECT_ROOT, CSV_SEPARATOR
 from core.business import import_csv
+from core.models import Pants
 
 ERROR_FILE_1 = os.path.join(PROJECT_ROOT, 'contrib/sample_error_1.csv')
 ERROR_FILE_2 = os.path.join(PROJECT_ROOT, 'contrib/sample_error_2.csv')
 ERROR_FILE_3 = os.path.join(PROJECT_ROOT, 'contrib/sample_error_3.csv')
+SUCCESS_FILE_1 = os.path.join(PROJECT_ROOT, 'contrib/sample_success_1.csv')
 
 
 @pytest.mark.django_db
@@ -48,3 +50,12 @@ def test_csv_import_with_errors_when_not_all_fields_on_second_line():
             'errors': [f'Line 2 does not have all expected fields. ' 
                        f'Remember the CSV separator must be '
                        f'"{CSV_SEPARATOR}".']}
+
+
+@pytest.mark.django_db
+def test_csv_import_with_success():
+    with open(SUCCESS_FILE_1, 'r') as success_file:
+        result = import_csv(success_file)
+        assert Pants.objects.count() > 0
+        assert result['successful_imports'] == 1
+        assert result['total_errors'] == 0

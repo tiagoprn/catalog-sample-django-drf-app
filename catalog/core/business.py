@@ -56,9 +56,9 @@ def import_csv(file_obj):
             'model': line_fields[1].strip(),
             'color': line_fields[2].strip(),
             'material': line_fields[3].strip(),
-            'cost_price': line_fields[4].strip(),
-            'sell_price': line_fields[5].strip(),
-            'taxes': line_fields[6].strip(),
+            'cost_price': float(line_fields[4].strip()),
+            'sell_price': float(line_fields[5].strip()),
+            'taxes': float(line_fields[6].strip())
         }
         serializer = PantsSerializer(data=pants_dict)
 
