@@ -19,6 +19,10 @@ def import_csv(file_obj):
 
     for index, line in enumerate(file_obj.readlines()):
         line_number = index + 1
+
+        if isinstance(line, bytes):
+            line = line.decode()
+
         line_fields = line.replace('\n', '').replace(
             '"', '').split(CSV_SEPARATOR)
 

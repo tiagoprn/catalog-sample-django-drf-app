@@ -21,10 +21,10 @@
     - [x] Enable and configure django-admin.
 
 - [ ] MILESTONE 4
-    - [ ] Create the view to import the CSVs (check import is right with django-admin.)
+    - [x] Create the view to import the CSVs (check import is right with django-admin.)
+    - [x] Create tests for the view that imports the CSVs.
 
 - [ ] MILESTONE 5
-    - [ ] Create tests for the view that imports the CSVs.
     - [ ] Finish tests for the views.
         - [ ] put
         - [ ] patch
@@ -32,6 +32,7 @@
         - [ ] get with pagination and filters
 
 - [ ] MILESTONE FINAL
+    - [ ] Include on the Makefile a command to trigger `contrib/upload_csv_to_api.sh`
     - [ ] Extract the lists used to validate the ChoiceFields to constant classes.
     - [ ] See why the choicefields on factory are not persisting just the value, but the whole tuple.
     - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
