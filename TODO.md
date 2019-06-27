@@ -6,7 +6,8 @@
         - [x] post
 
 - [ ] MILESTONE 2
-    - [ ] django-filter and pagination on the pants get (all) view.
+    - [x] pagination on the pants get (all) view.
+    - [ ] django-filter on the pants get (all) view.
 
 - [ ] MILESTONE 3
     - [ ] Enable and configure django-admin.
