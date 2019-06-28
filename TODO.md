@@ -35,6 +35,7 @@
     - [x] See why the choicefields on factory are not persisting just the value, but the whole tuple.
     - [ ] Include on the Makefile a command to trigger `contrib/upload_csv_to_api.sh`
     - [ ] Configure a better logging 
+    - [ ] Run the linter
     - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
       Dockerfile - the skeleton is here at tmp/)
     - [ ] Create a Makefile command to run the building from the container from previous step, push

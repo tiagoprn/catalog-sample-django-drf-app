@@ -74,7 +74,7 @@ def import_csv(file_obj):
 
         if not serializer.is_valid():
             message = (f'Line number {line_number} could not be imported, '
-                       f'it has errors.')
+                       f'it has errors: {serializer.errors}')
             errors.append(message)
             continue
 

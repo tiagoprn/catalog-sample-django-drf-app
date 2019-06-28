@@ -18,6 +18,7 @@ MATERIAL_CHOICE_FIELD = [
 class Pants(models.Model):
     class Meta:
         verbose_name_plural = "Pants"
+        unique_together = ('brand', 'model', 'color', 'material')
 
     brand = models.CharField(max_length=20)
     model = models.CharField(max_length=20, choices=MODEL_CHOICE_FIELD)
