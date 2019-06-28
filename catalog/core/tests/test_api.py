@@ -138,7 +138,7 @@ class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
 
     @pytest.mark.django_db
     def test_put_pants_successfully(self):
-        pants = PantsFactory.create()
+        pants = PantsFactory.create(model='slim')
         payload = {
             'brand': 'Calvin Klein',
             'model': 'regular',
