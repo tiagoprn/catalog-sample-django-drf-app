@@ -23,8 +23,11 @@ def import_csv(file_obj):
         if isinstance(line, bytes):
             line = line.decode()
 
-        line_fields = line.replace('\n', '').replace(
-            '"', '').split(CSV_SEPARATOR)
+        line = line.replace('\n', '').replace('"', '').strip()
+        if line == '':
+            continue
+
+        line_fields = line.split(CSV_SEPARATOR)
 
         if line_number == 1:
             if not set(header) == set(line_fields):
