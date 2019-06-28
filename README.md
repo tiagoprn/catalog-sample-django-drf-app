@@ -30,10 +30,13 @@ IDE.
 
 ## Requirements
 
-Since I recomend to **install on docker** so not to clutter your environment, 
+I recomend to **install on docker** so not to clutter your environment, 
 the only requirements are **`docker` and `docker-compose`**. So any
 linux distro (including Ubuntu 18.04) is supported, since docker is 
 os-independent.
+
+But if you don't mind the clutter, go with a python virtualenv and call it a day. 
+Steps for both options are available below. 
 
 ### OPTION 1 - Run locally through **docker**
 
