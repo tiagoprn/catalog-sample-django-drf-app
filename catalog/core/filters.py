@@ -6,7 +6,7 @@ from django_filters.rest_framework import (
 )
 
 
-class PantsFilter(FilterSet):
+class PantsFilter(FilterSet):  # pylint: disable=too-many-ancestors
     class Meta:
         fields = [
             'brand',

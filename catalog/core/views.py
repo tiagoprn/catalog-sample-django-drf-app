@@ -21,7 +21,8 @@ class PantsViewSet(ModelViewSet):  # pylint: disable=too-many-ancestors
 class CSVImportView(APIView):
     parser_classes = (FileUploadParser,)
 
-    def post(self, request, format='csv'):
+    @staticmethod
+    def post(request, format='csv'):  # pylint: disable=redefined-builtin, unused-argument
         file_obj = request.FILES.get('file')
         if not file_obj:
             return Response(

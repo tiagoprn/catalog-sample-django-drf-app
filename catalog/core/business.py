@@ -42,7 +42,7 @@ def import_csv(file_obj):
                     'errors': errors
                 }
 
-            if not (' '.join(header) == ' '.join(line_fields)):
+            if ' '.join(header) != ' '.join(line_fields):
                 errors.append(f'The CSV does not have columns '
                               f'on expected order, '
                               f'which is: {" ".join(header)}')
@@ -84,7 +84,7 @@ def import_csv(file_obj):
             message = (f'Line number {line_number} was succesfully '
                        f'imported with pants.id={pants.id}')
             imported.append(message)
-        except Exception as ex:
+        except Exception as ex:  # pylint: disable=broad-except
             message = (f'Line number {line_number} could not be '
                        f'imported as a pants record. Exception: {ex}')
             errors.append(message)

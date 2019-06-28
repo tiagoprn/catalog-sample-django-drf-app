@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyText, FuzzyChoice, FuzzyDecimal
 from core.models import (

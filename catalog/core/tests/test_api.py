@@ -30,7 +30,7 @@ def get_is_paginated_with_single_page(response_dict):
     return has_pagination_keys and no_previous_and_next_pages
 
 
-class TestPantApi(APITestCase):
+class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
     @pytest.mark.django_db
     def test_get_pants_when_no_pant(self):
         response = self.client.get('/core/pants/')
@@ -74,8 +74,8 @@ class TestPantApi(APITestCase):
     def test_get_filtered_pants_when_should_be_paginated_with_many_pants(self):
         page_size = 5
         ck_brand_count = 20
-        [PantsFactory.create(brand='CK') for _ in range(ck_brand_count)]
-        [PantsFactory.create(brand='TNG') for _ in range(12)]
+        _ = [PantsFactory.create(brand='CK') for _ in range(ck_brand_count)]
+        _ = [PantsFactory.create(brand='TNG') for _ in range(12)]
 
         response = self.client.get(
             f'/core/pants/?page_size={page_size}&brand=CK'
