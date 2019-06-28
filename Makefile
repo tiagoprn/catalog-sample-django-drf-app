@@ -10,19 +10,17 @@ help:
 	@echo -e " make migrate \n\t Apply the database migrations.\n"
 	@echo -e " make requirements \n\t Install project requirements through pip.\n"
 	@echo -e " make requirements-dev \n\t Install project requirements through pip for a development environment.\n"
-	@echo -e " make requirements-apt \n\t Install packages on the distribution to support installation through pip.\n"
-	@echo -e " make check-debugger \n\t Find ipdb references.\n"
-	@echo -e " make test-ci \n\t Run test suite.\n"
 	@echo -e " make test \n\t Run test suite with debugger support.\n"
 	@echo -e " make singletest \n\t Run a specific test. e.g. 'make singletest name=test_function_name' \n"
 	@echo -e " make coverage \n\t Run the coverage reports.\n"
 	@echo -e " make shell \n\t Run a python shell.\n"
 	@echo -e " make runserver \n\t Run the python app (development server).\n"
-	@echo -e " make admin_ui_superuser \n\t Create the django admin superuser.\n"
+	@echo -e " make admin-ui-superuser \n\t Create the django admin superuser.\n"
 	@echo -e " make upload_sample_csv_to_import_api \n\t Upload a sample CSV to import endpoint to populate the database table.\n"
 	@echo -e " make lint \n\t Run pylint.\n"
 	@echo -e " make setup \n\t Setup the environment.\n"
 	@echo -e " make container \n\t Re(build) the app docker container.\n"
+	@echo -e " make enter_container \n\t Enter (open a bash shell) to the app docker container.\n"
 
 clean:
 	@find . -name "*.pyc" | xargs rm -rf
@@ -50,18 +48,6 @@ requirements-dev:
 	@pip install --upgrade pip
 	@pip install -r requirements/dev.txt
 
-requirements-apt:
-	@echo 'Root access required to install system dependencies from `requirements.apt` file'
-	@sudo apt-get install $(shell cat requirements.apt | tr "\n" " ")
-
-check-debugger:
-	@find catalog -type f -exec egrep -iH "set_trace" {} \+ && echo "Ooops! Found 1 set_trace on your source code!" && exit 1 || exit 0
-
-test-ci: SHELL:=/bin/bash
-test-ci: clean
-	@mkdir -p logs
-	py.test -vvv catalog --ds=$(SETTINGS)
-
 test: SHELL:=/bin/bash
 test: clean
 	@mkdir -p logs
@@ -85,7 +71,7 @@ runserver: clean
 	@mkdir -p logs
 	$(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
 
-admin_ui_superuser:
+admin-ui-superuser:
 	@mkdir -p logs
 	$(DJANGO_CMD) createsuperuser
 
@@ -101,3 +87,7 @@ setup: requirements-dev setup-env migrate
 
 container:
 	./rebuild_container.sh
+
+enter-container:
+	@echo '=== YOU WILL NOW ENTER catalog DOCKER CONTAINER. HAVE FUN! ==='
+	@sudo docker exec -it $$(sudo docker ps | grep catalog | awk '{ print $$1}') /bin/bash

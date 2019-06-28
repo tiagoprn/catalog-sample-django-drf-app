@@ -44,8 +44,8 @@
       Dockerfile - the skeleton is here at tmp/)
     - [x] Create a docker-compose to run the app image (catalog)
     - [x] Create a Makefile command to run the building from the container from previous step
-    - [ ] Refactor the CSV import to run with csv.DictReader
-    - [ ] Create a Makefile command to enter the container (`make container-enter`)
+    - [x] Refactor the CSV import to run with csv.DictReader
+    - [x] Create a Makefile command to enter the container (`make enter-container`)
     - [x] Update README.md with instructions to run locally from the makefile.
     - [ ] Add postgres and dj-database-url (will have just 2 envs for now: `dev` and `test`)
-    - [ ] Update the docker-compose to run alongside postgres
+    - [ ] Update docker-compose to run alongside postgres

@@ -24,17 +24,24 @@ IDE.
 Since the solution is dockerized, the only requirements are `docker` and `docker-compose`. So any
 linux distro (including Ubuntu 18.04) is supported.
 
-## How to run locally (docker os-independent environment)
+## How to run locally **(docker os-independent environment)**
 
 This will build a docker container ready to be used: 
 
 `make container`
 
-Then, to enter the container: 
+Then, to execute other operations, enter the container: 
 
-`make container-enter`
+`make enter-container`
 
-## How to run locally (local development environment)
+To create an admin user to browse the catalog records locally:
+
+`make admin-ui-superuser`
+
+Now, go to the section "After finished" below on this file to check 
+what you can do.
+
+## How to run locally **(local development environment)**
 
 First, create a virtualenv, using the tooling at your disposal.  
 
@@ -50,7 +57,10 @@ A Makefile is available to automate the full setup process (and other developmen
 
 - To create an admin user to browse the catalog records locally: 
 
-`make admin_ui_superuser`
+`make admin-ui-superuser`
+
+Now, go to the section "After finished" below on this file to check 
+what you can do.
 
 ## After finished
 
@@ -61,4 +71,5 @@ http://localhost:8000/admin.
 
 IMPORTANT: To upload a CSV to the API, you cannot use swagger. So, it was provided a shell script
 that runs curl at `contrib/upload_csv_to_api.sh` that you can use as an example on how to do that.
-If you want to run the provided one, you can run `make upload_sample_csv_to_import_api`.
+If for convenience you want to run the provided one, you can run `make upload_sample_csv_to_import_api`.
+You can use the admin interface mentioned before to confirm the CSV data was successfully uploaded.
