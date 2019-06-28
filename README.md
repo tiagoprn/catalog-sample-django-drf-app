@@ -4,13 +4,22 @@ This project exposes a browsable CRUD REST API that can be used on a store's pan
 You can also mass import pants' records on the API through a CSV file, and browse and
 search through the catalog through an admin interface for convenience.
 
+Almost all the API is covered with successful-failure automated tests scenarios. 
+Just the csv import one was covered on the business module - so all the 
+critical decision branches are covered there. 
+
 # Technologies
 
 - Python 3.7
 - Django and Django REST Framework
 - Swagger
 - pytest
+- SQLite (*)
 - docker / docker-compose
+
+(*) Given the focus I got on the API working with full test coverage, I had left to change
+to Postgres at a later time, since I prefer it as a relational database. But to deliver on time, 
+I had left that idea.  
 
 # Development environment
 
@@ -21,7 +30,8 @@ IDE.
 
 ## Requirements
 
-Since the solution is dockerized, the only requirements are `docker` and `docker-compose`. So any
+Since I recomend to **install on docker** so not to clutter your environment, 
+the only requirements are **`docker` and `docker-compose`**. So any
 linux distro (including Ubuntu 18.04) is supported.
 
 ## How to run locally **(docker os-independent environment)**
@@ -38,12 +48,20 @@ To create an admin user to browse the catalog records locally:
 
 `make admin-ui-superuser`
 
+- To run the test suite: 
+
+`make test`
+
+- To run the tests coverage report: 
+
+`make coverage`
+apt
 Now, go to the section "After finished" below on this file to check 
 what you can do.
 
 ## How to run locally **(local development environment)**
 
-First, create a virtualenv, using the tooling at your disposal.  
+First, **create a virtualenv** based on `python 3.5+` , using the tooling at your disposal.  
 
 A Makefile is available to automate the full setup process (and other development jobs also ;).
 
@@ -59,8 +77,17 @@ A Makefile is available to automate the full setup process (and other developmen
 
 `make admin-ui-superuser`
 
+- To run the test suite: 
+
+`make test`
+
+- To run the tests coverage report: 
+
+`make coverage`
+
 Now, go to the section "After finished" below on this file to check 
 what you can do.
+
 
 ## After finished
 
