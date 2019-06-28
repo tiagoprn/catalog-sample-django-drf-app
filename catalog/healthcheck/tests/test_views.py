@@ -1,9 +1,8 @@
-from django.urls import reverse as r
+from rest_framework.test import APITestCase
 
 
-class TestHealthCheckView:
+class TestHealthCheckView(APITestCase):
 
-    def test_status(self, api_client):  # pylint: disable=no-self-use
-        url = r('healthcheck:status')
-        response = api_client.get(url)
+    def test_status(self):
+        response = self.client.get('/healthcheck/')
         assert response.status_code == 200
