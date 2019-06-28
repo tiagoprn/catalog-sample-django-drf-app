@@ -24,7 +24,11 @@ I had left that idea.
 # Development environment
 
 This project was developed on Arch Linux, using `pyenv` and `pyenv-virtualenv`, with PyCharm as the
-IDE.
+IDE - and some vim, i3 and tmux also, since I am an automation freak. :)
+
+During development I divided it into milestones. Each one is a branch on this repository. 
+When finished a milestone, it was merged into master and than another one was created from there. 
+On the file `TODO.md` you can see how I have managed the work. 
 
 # Installation
 
