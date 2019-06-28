@@ -38,13 +38,13 @@
     - [x] Run the linter
     - [x] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
       the image)
-    - [ ] Create a `make setup` on the Makefile, where it is composed by: 
-        `make requirements-dev, make setup-env, make migrate, admin_ui_superuser, upload_sample_csv_to_import_api and runserver` 
-    - [ ] Create a Makefile command to run the building from the container from previous step, push
-      to dockerhub
+    - [x] Create a `make setup` on the Makefile, where it is composed by: 
+        `make requirements-dev, make setup-env, make migrate, upload_sample_csv_to_import_api`
     - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
       Dockerfile - the skeleton is here at tmp/)
     - [ ] Create a docker-compose to run the app image (catalog)
+    - [ ] Create a Makefile command to run the building from the container from previous step, push
+      to dockerhub
     - [ ] Update README.md with instructions to run locally from the docker-compose image.
     - [ ] Add postgres and dj-database-url (will have just 2 envs for now: `dev` and `test`)
     - [ ] Update the docker-compose to run alongside postgres
