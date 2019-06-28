@@ -1,0 +1,18 @@
+version: '2'
+services:
+  catalog:
+    build: .
+    image: tiagoprn/catalog
+    container_name: catalog
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    network_mode: "host"
+    pid: "host"
+    privileged: true
+    volumes:
+      - .:/catalog
+      - ./logs:/logs
+    command: make runserver
+    environment:
+      PYTHONUNBUFFERED: 0

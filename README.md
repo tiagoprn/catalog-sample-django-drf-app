@@ -24,7 +24,17 @@ IDE.
 Since the solution is dockerized, the only requirements are `docker` and `docker-compose`. So any
 linux distro (including Ubuntu 18.04) is supported.
 
-## How to run locally
+## How to run locally (docker os-independent environment)
+
+This will build a docker container ready to be used: 
+
+`make container`
+
+Then, to enter the container: 
+
+`make container-enter`
+
+## How to run locally (local development environment)
 
 First, create a virtualenv, using the tooling at your disposal.  
 
@@ -51,4 +61,4 @@ http://localhost:8000/admin.
 
 IMPORTANT: To upload a CSV to the API, you cannot use swagger. So, it was provided a shell script
 that runs curl at `contrib/upload_csv_to_api.sh` that you can use as an example on how to do that.
-
+If you want to run the provided one, you can run `make upload_sample_csv_to_import_api`.

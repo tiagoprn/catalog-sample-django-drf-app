@@ -22,6 +22,7 @@ help:
 	@echo -e " make upload_sample_csv_to_import_api \n\t Upload a sample CSV to import endpoint to populate the database table.\n"
 	@echo -e " make lint \n\t Run pylint.\n"
 	@echo -e " make setup \n\t Setup the environment.\n"
+	@echo -e " make container \n\t Re(build) the app docker container.\n"
 
 clean:
 	@find . -name "*.pyc" | xargs rm -rf
@@ -31,6 +32,7 @@ clean:
 
 setup-env:
 	@cp -n contrib/localenv .env
+	@mkdir -p logs
 
 migrations:
 	$(DJANGO_CMD) makemigrations $(app)
@@ -40,7 +42,7 @@ migrate:
 
 requirements:
 	@pip install --upgrade pip
-	@pip install -r requirements/base.txt
+	@pip install --no-cache-dir -r requirements/base.txt
 
 requirements-dev:
 	@pip install --upgrade pip
@@ -73,7 +75,7 @@ shell: clean
 	$(DJANGO_CMD) shell
 
 runserver: clean
-	mkdir -p log && $(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
+	mkdir -p logs && $(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
 
 admin_ui_superuser:
 	$(DJANGO_CMD) createsuperuser
@@ -84,6 +86,8 @@ upload_sample_csv_to_import_api:
 lint:
 	@pylint -r y --rcfile=.pylintrc catalog/*
 
-setup: requirements-dev setup-env migrate upload_sample_csv_to_import_api
+setup: requirements-dev setup-env migrate
 	@echo 'Setup finished.'
 
+container:
+	./rebuild_container.sh

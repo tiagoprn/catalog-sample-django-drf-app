@@ -163,7 +163,7 @@ LOGGING = {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
             'filters': ['require_debug_false'],
-            'filename': os.path.join(PROJECT_ROOT, 'log/error.log'),
+            'filename': os.path.join(PROJECT_ROOT, 'logs/error.log'),
             'formatter': 'verbose'
         },
     },
