@@ -23,10 +23,10 @@ help:
 	@echo -e " make enter_container \n\t Enter (open a bash shell) to the app docker container.\n"
 
 clean:
-	@find . -name "*.pyc" | xargs rm -rf
-	@find . -name "*.pyo" | xargs rm -rf
-	@find . -name "__pycache__" -type d | xargs rm -rf
-	@find . -name ".cache" -type d | xargs rm -rf
+	@sudo find . -name "*.pyc" | xargs rm -rf
+	@sudo find . -name "*.pyo" | xargs rm -rf
+	@sudo find . -name "__pycache__" -type d | xargs rm -rf
+	@sudo find . -name ".cache" -type d | xargs rm -rf
 
 setup-env:
 	@mkdir -p logs
@@ -78,7 +78,7 @@ admin-ui-superuser:
 upload_sample_csv_to_import_api:
 	cd contrib && ./upload_csv_to_api.sh && cd ..
 
-lint:
+lint: clean
 	@mkdir -p logs
 	@pylint -r y --rcfile=.pylintrc catalog/*
 

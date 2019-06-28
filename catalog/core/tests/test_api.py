@@ -117,7 +117,7 @@ class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
         assert pants.profit == expected_profit
 
     @pytest.mark.django_db
-    def test_post_pants_with_invalid_parameters(self):
+    def test_post_pants_with_invalid_parameters_should_fail(self):
         payload = {
             'brand': 'Calvin Klein',
             'model': 'regular',
@@ -167,7 +167,7 @@ class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
             assert payload[key] == getattr(reloaded_pants, key)
 
     @pytest.mark.django_db
-    def test_put_pants_with_invalid_parameters(self):
+    def test_put_pants_with_invalid_parameters_should_fail(self):
         pants = PantsFactory.create()
         payload = {
             'brand': 'Calvin Klein',
@@ -188,7 +188,7 @@ class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
         assert json == {'material': ['This field is required.']}
 
     @pytest.mark.django_db
-    def test_put_pants_not_found(self):
+    def test_put_pants_not_found_should_fail(self):
         payload = {
             'brand': 'Calvin Klein',
             'model': 'regular',
@@ -235,7 +235,7 @@ class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
         assert pants.color == reloaded_pants.color
 
     @pytest.mark.django_db
-    def test_patch_pants_with_invalid_parameters(self):
+    def test_patch_pants_with_invalid_parameters_should_fail(self):
         pants = PantsFactory.create()
         payload = {'brand': ''}
 
@@ -249,7 +249,7 @@ class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
         assert json == {'brand': ['This field may not be blank.']}
 
     @pytest.mark.django_db
-    def test_patch_pants_not_found(self):
+    def test_patch_pants_not_found_should_fail(self):
         payload = {'brand': 'Calvin Klein'}
 
         response = self.client.patch(
@@ -272,7 +272,7 @@ class TestPantApi(APITestCase):  # pylint: disable=too-many-ancestors
         assert Pants.objects.count() == 0
 
     @pytest.mark.django_db
-    def test_delete_pants_not_found(self):
+    def test_delete_pants_not_found_should_fail(self):
         response = self.client.delete(path=f'/core/pants/1/')
         json = response.json()
 
