@@ -31,7 +31,7 @@
         - [x] delete
         - [x] get with pagination and filters
 
-- [ ] MILESTONE FINAL
+- [-] MILESTONE FINAL
     - [x] See why the choicefields on factory are not persisting just the value, but the whole tuple.
     - [x] Include on the Makefile a command to trigger `contrib/upload_csv_to_api.sh`
     - [x] Configure a better logging 
