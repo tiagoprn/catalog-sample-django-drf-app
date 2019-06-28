@@ -12,6 +12,7 @@ omit =
         *settings.py*
         *wsgi.py*
         *apps.py*
+        *swagger.py*
 
 [report]
 # Regexes for lines to exclude from consideration
