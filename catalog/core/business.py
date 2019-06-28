@@ -17,12 +17,10 @@ header = [
 ]
 
 
-def import_csv(file_obj):
-    errors = []
-    imported = []
-
+def convert_bytes_to_string(file_obj):
     try:
-        _ = file_obj.encoding == 'UTF-8'
+        if file_obj.encoding == 'UTF-8':
+           return file_obj
     except AttributeError:
         wrapper = io.TextIOWrapper(
             io.BytesIO(),
@@ -33,9 +31,15 @@ def import_csv(file_obj):
             line_str = line.decode()
             wrapper.write(line_str)
         wrapper.seek(0, 0)
-        file_obj = wrapper
+        return wrapper
 
-    reader = csv.DictReader(file_obj, delimiter=CSV_SEPARATOR)
+
+def import_csv(file_obj):
+    errors = []
+    imported = []
+
+    reader = csv.DictReader(convert_bytes_to_string(file_obj),
+                            delimiter=CSV_SEPARATOR)
 
     if not set(header) == set(reader.fieldnames):
         errors.append(f'The CSV does not have all expected columns, '
