@@ -32,9 +32,10 @@ IDE.
 
 Since I recomend to **install on docker** so not to clutter your environment, 
 the only requirements are **`docker` and `docker-compose`**. So any
-linux distro (including Ubuntu 18.04) is supported.
+linux distro (including Ubuntu 18.04) is supported, since docker is 
+os-independent.
 
-## How to run locally **(docker os-independent environment)**
+### OPTION 1 - Run locally through **docker**
 
 This will build a docker container ready to be used: 
 
@@ -59,7 +60,7 @@ apt
 Now, go to the section "After finished" below on this file to check 
 what you can do.
 
-## How to run locally **(local development environment)**
+### OPTION 2 - Run locally with a **virtualenv**
 
 First, **create a virtualenv** based on `python 3.5+` , using the tooling at your disposal.  
 
