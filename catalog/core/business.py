@@ -1,4 +1,6 @@
 import csv
+import io
+import os
 
 from config.settings import CSV_SEPARATOR
 from core.models import Pants
@@ -18,6 +20,20 @@ header = [
 def import_csv(file_obj):
     errors = []
     imported = []
+
+    try:
+        _ = file_obj.encoding == 'UTF-8'
+    except AttributeError:
+        wrapper = io.TextIOWrapper(
+            io.BytesIO(),
+            encoding='utf-8',
+            line_buffering=True
+        )
+        for line in file_obj:
+            line_str = line.decode()
+            wrapper.write(line_str)
+        wrapper.seek(0, 0)
+        file_obj = wrapper
 
     reader = csv.DictReader(file_obj, delimiter=CSV_SEPARATOR)
 
