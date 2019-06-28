@@ -31,13 +31,15 @@ clean:
 	@find . -name ".cache" -type d | xargs rm -rf
 
 setup-env:
-	@cp -n contrib/localenv .env
 	@mkdir -p logs
+	@cp -n contrib/localenv .env
 
 migrations:
+	@mkdir -p logs
 	$(DJANGO_CMD) makemigrations $(app)
 
 migrate:
+	@mkdir -p logs
 	$(DJANGO_CMD) migrate
 
 requirements:
@@ -57,33 +59,41 @@ check-debugger:
 
 test-ci: SHELL:=/bin/bash
 test-ci: clean
+	@mkdir -p logs
 	py.test -vvv catalog --ds=$(SETTINGS)
 
 test: SHELL:=/bin/bash
 test: clean
+	@mkdir -p logs
 	py.test catalog --ds=$(SETTINGS) -s -vvv --pdbcls=IPython.core.debugger:Pdb
 
 singletest: SHELL:=/bin/bash
 singletest: clean
+	@mkdir -p logs
 	py.test catalog -k $(name) --ds=$(SETTINGS) -s -vvv --pdbcls=IPython.core.debugger:Pdb
 
 coverage: SHELL:=/bin/bash
 coverage: clean
+	@mkdir -p logs
 	py.test --cov-config .coveragerc --cov catalog catalog --ds=$(SETTINGS) --cov-report term-missing
 
 shell: clean
+	@mkdir -p logs
 	$(DJANGO_CMD) shell
 
 runserver: clean
-	mkdir -p logs && $(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
+	@mkdir -p logs
+	$(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
 
 admin_ui_superuser:
+	@mkdir -p logs
 	$(DJANGO_CMD) createsuperuser
 
 upload_sample_csv_to_import_api:
 	cd contrib && ./upload_csv_to_api.sh && cd ..
 
 lint:
+	@mkdir -p logs
 	@pylint -r y --rcfile=.pylintrc catalog/*
 
 setup: requirements-dev setup-env migrate

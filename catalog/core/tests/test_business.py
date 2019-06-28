@@ -69,7 +69,7 @@ def test_csv_import_with_success():
     (SUCCESS_FILE_3)
 ])
 @pytest.mark.django_db
-def test_csv_import_with_success_when_double_quotes_on_fields():
+def test_csv_import_with_success_when_double_quotes_on_fields(file_name):  # pylint: disable=unused-argument
     with open(SUCCESS_FILE_1, 'r') as success_file:
         result = import_csv(success_file)
         assert Pants.objects.count() > 0
