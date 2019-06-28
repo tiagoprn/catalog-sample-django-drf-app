@@ -17,7 +17,9 @@ def import_csv(file_obj):
     errors = []
     imported = []
 
-    for index, line in enumerate(file_obj.readlines()):
+    lines = file_obj.readlines()
+
+    for index, line in enumerate(lines):
         line_number = index + 1
 
         if isinstance(line, bytes):
