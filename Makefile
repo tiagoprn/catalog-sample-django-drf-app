@@ -19,6 +19,7 @@ help:
 	@echo -e " make shell \n\t Run a python shell.\n"
 	@echo -e " make runserver \n\t Run the python app (development server).\n"
 	@echo -e " make admin_ui_superuser \n\t Create the django admin superuser.\n"
+	@echo -e " make upload_sample_csv_to_import_api \n\t Upload a sample CSV to import endpoint to populate the database table.\n"
 	@echo -e " make lint \n\t Run pylint.\n"
 
 clean:
@@ -75,6 +76,9 @@ runserver: clean
 
 admin_ui_superuser:
 	$(DJANGO_CMD) createsuperuser
+
+upload_sample_csv_to_import_api:
+	cd contrib && ./upload_csv_to_api.sh && cd ..
 
 lint:
 	@pylint -r y --rcfile=.pylintrc catalog/*
