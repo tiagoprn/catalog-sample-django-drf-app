@@ -21,6 +21,7 @@ help:
 	@echo -e " make admin_ui_superuser \n\t Create the django admin superuser.\n"
 	@echo -e " make upload_sample_csv_to_import_api \n\t Upload a sample CSV to import endpoint to populate the database table.\n"
 	@echo -e " make lint \n\t Run pylint.\n"
+	@echo -e " make setup \n\t Setup the environment.\n"
 
 clean:
 	@find . -name "*.pyc" | xargs rm -rf
@@ -82,4 +83,7 @@ upload_sample_csv_to_import_api:
 
 lint:
 	@pylint -r y --rcfile=.pylintrc catalog/*
+
+setup: requirements-dev setup-env migrate upload_sample_csv_to_import_api
+	@echo 'Setup finished.'
 

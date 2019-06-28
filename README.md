@@ -24,10 +24,23 @@ IDE.
 Since the solution is dockerized, the only requirements are `docker` and `docker-compose`. So any
 linux distro (including Ubuntu 18.04) is supported.
 
-## Instructions
+## How to run locally
+
+First, create a virtualenv, using the tooling at your disposal.  
 
 A Makefile is available to automate the full setup process (and other development jobs also ;).
-Just run `make setup` and finishing up you will have a fully working environment.
+
+- To setup the environment: 
+
+`make setup`
+
+- To raise the local development server: 
+
+`make runserver`
+
+- To create an admin user to browse the catalog records locally: 
+
+`make admin_ui_superuser`
 
 ## After finished
 
