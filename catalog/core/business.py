@@ -1,6 +1,5 @@
 import csv
 import io
-import os
 
 from config.settings import CSV_SEPARATOR
 from core.models import Pants
@@ -20,7 +19,7 @@ header = [
 def convert_bytes_to_string(file_obj):
     try:
         if file_obj.encoding == 'UTF-8':
-           return file_obj
+            return file_obj
     except AttributeError:
         wrapper = io.TextIOWrapper(
             io.BytesIO(),
@@ -32,6 +31,7 @@ def convert_bytes_to_string(file_obj):
             wrapper.write(line_str)
         wrapper.seek(0, 0)
         return wrapper
+    return file_obj
 
 
 def import_csv(file_obj):
@@ -63,21 +63,13 @@ def import_csv(file_obj):
         }
 
     for line in enumerate(reader):
-
-        # if isinstance(line, bytes):
-        #     line = line.decode()
-        #
-        # line = line.replace('\n', '').replace('"', '').strip()
-        # if line == '':
-        #     continue
-
         filled_fields = []
         col_values = line[1]
         for key in col_values.keys():
             if col_values[key] is not None:
                 filled_fields.append(col_values[key])
 
-        if not len(set(filled_fields)) == len(set(header)):
+        if len(set(filled_fields)) != len(set(header)):
             message = (f'Line {reader.line_num} does not have '
                        f'all expected fields. Remember the '
                        f'CSV separator must be "{CSV_SEPARATOR}".')
