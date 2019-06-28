@@ -1,7 +1,7 @@
 # catalog
 
 This project exposes a browsable CRUD REST API that can be used on a store's pants' catalog.
-You can also mass import pants' records on the API through importing a CSV file, and browse and
+You can also mass import pants' records on the API through a CSV file, and browse and
 search through the catalog through an admin interface for convenience.
 
 # Technologies
@@ -21,7 +21,7 @@ IDE.
 
 ## Requirements
 
-Since the solution was dockerized, the only requirements are `docker` and `docker-compose`. So any
+Since the solution is dockerized, the only requirements are `docker` and `docker-compose`. So any
 linux distro (including Ubuntu 18.04) is supported.
 
 ## Instructions

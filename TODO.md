@@ -36,15 +36,15 @@
     - [x] Include on the Makefile a command to trigger `contrib/upload_csv_to_api.sh`
     - [x] Configure a better logging 
     - [x] Run the linter
-    - [ ] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
+    - [x] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
       the image)
-    - [ ] Update README.md with instructions to run locally from the docker-compose image.
     - [ ] Create a `make setup` on the Makefile, where it is composed by: 
         `make requirements-dev, make setup-env, make migrate, admin_ui_superuser, upload_sample_csv_to_import_api and runserver` 
-    - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
-      Dockerfile - the skeleton is here at tmp/)
     - [ ] Create a Makefile command to run the building from the container from previous step, push
       to dockerhub
-    - [ ] Add postgres and dj-database-url
-    - [ ] Create a docker-compose to run the app image (catalog) and postgresql, using my previous
-      postgres templates.
+    - [ ] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
+      Dockerfile - the skeleton is here at tmp/)
+    - [ ] Create a docker-compose to run the app image (catalog)
+    - [ ] Update README.md with instructions to run locally from the docker-compose image.
+    - [ ] Add postgres and dj-database-url (will have just 2 envs for now: `dev` and `test`)
+    - [ ] Update the docker-compose to run alongside postgres
