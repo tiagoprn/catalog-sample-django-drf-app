@@ -72,7 +72,7 @@ shell: clean
 	$(DJANGO_CMD) shell
 
 runserver: clean
-	$(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
+	mkdir -p log && $(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
 
 admin_ui_superuser:
 	$(DJANGO_CMD) createsuperuser
