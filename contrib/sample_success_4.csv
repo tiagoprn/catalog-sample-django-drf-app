@@ -1,13 +1,17 @@
 "brand";"model";"color";"material";"cost_price";"sell_price";"taxes"
 "ck";"regular";"blue";"jeans";150.99;350.00;5.48
+
 "ck";"skinny";"blue";"jeans";170.99;390.00;9.48
 "ck";"slim";"blue";"jeans";150.99;350.00;5.48
 "ck";"fit";"blue";"jeans";150.99;350.00;5.48
 "ck";"cargo";"blue";"jeans";150.99;350.00;5.48
+
 "TNG";"regular";"blue";"jeans";150.99;350.00;5.48
 "TNG";"regular";"blue";"tracksuit";150.99;350.00;5.48
 "TNG";"regular";"blue";"twill";150.99;350.00;5.48
 "TNG";"regular";"blue";"bla";150.99;350.00;5.48
+
 "Index";"regular";"red";"jeans";150.99;350.00;5.48
 "Index";"skinny";"green";"jeans";150.99;350.00;5.48
 "Index";"slim";"blue";"jeans";150.99;350.00;5.48
+
