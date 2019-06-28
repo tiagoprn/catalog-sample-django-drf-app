@@ -24,12 +24,12 @@
     - [x] Create the view to import the CSVs (check import is right with django-admin.)
     - [x] Create tests for the view that imports the CSVs.
 
-- [ ] MILESTONE 5
-    - [ ] Finish tests for the views.
-        - [ ] put
-        - [ ] patch
-        - [ ] delete
-        - [ ] get with pagination and filters
+- [x] MILESTONE 5
+    - [x] Finish tests for the views.
+        - [x] put
+        - [x] patch
+        - [x] delete
+        - [x] get with pagination and filters
 
 - [ ] MILESTONE FINAL
     - [ ] Include on the Makefile a command to trigger `contrib/upload_csv_to_api.sh`
