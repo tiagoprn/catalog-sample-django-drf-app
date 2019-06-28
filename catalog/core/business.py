@@ -1,3 +1,5 @@
+import csv
+
 from config.settings import CSV_SEPARATOR
 from core.models import Pants
 from core.serializers import PantsSerializer
@@ -17,63 +19,64 @@ def import_csv(file_obj):
     errors = []
     imported = []
 
-    lines = file_obj.readlines()
+    reader = csv.DictReader(file_obj, delimiter=CSV_SEPARATOR)
 
-    for index, line in enumerate(lines):
-        line_number = index + 1
+    if not set(header) == set(reader.fieldnames):
+        errors.append(f'The CSV does not have all expected columns, '
+                      f'which are: {" ".join(header)}')
+        return {
+            'successful_imports': len(imported),
+            'total_errors': len(errors),
+            'imported': imported,
+            'errors': errors
+        }
 
-        if isinstance(line, bytes):
-            line = line.decode()
+    if ' '.join(header) != ' '.join(reader.fieldnames):
+        errors.append(f'The CSV does not have columns '
+                      f'on expected order, '
+                      f'which is: {" ".join(header)}')
+        return {
+            'successful_imports': len(imported),
+            'total_errors': len(errors),
+            'imported': imported,
+            'errors': errors
+        }
 
-        line = line.replace('\n', '').replace('"', '').strip()
-        if line == '':
-            continue
+    for line in enumerate(reader):
 
-        line_fields = line.split(CSV_SEPARATOR)
+        # if isinstance(line, bytes):
+        #     line = line.decode()
+        #
+        # line = line.replace('\n', '').replace('"', '').strip()
+        # if line == '':
+        #     continue
 
-        if line_number == 1:
-            if not set(header) == set(line_fields):
-                errors.append(f'The CSV does not have all expected columns, '
-                              f'which are: {" ".join(header)}')
-                return {
-                    'successful_imports': len(imported),
-                    'total_errors': len(errors),
-                    'imported': imported,
-                    'errors': errors
-                }
+        filled_fields = []
+        col_values = line[1]
+        for key in col_values.keys():
+            if col_values[key] is not None:
+                filled_fields.append(col_values[key])
 
-            if ' '.join(header) != ' '.join(line_fields):
-                errors.append(f'The CSV does not have columns '
-                              f'on expected order, '
-                              f'which is: {" ".join(header)}')
-                return {
-                    'successful_imports': len(imported),
-                    'total_errors': len(errors),
-                    'imported': imported,
-                    'errors': errors
-                }
-            continue
-
-        if not len(line_fields) == len(header):
-            message = (f'Line {line_number} does not have '
+        if not len(set(filled_fields)) == len(set(header)):
+            message = (f'Line {reader.line_num} does not have '
                        f'all expected fields. Remember the '
                        f'CSV separator must be "{CSV_SEPARATOR}".')
             errors.append(message)
             continue
 
         pants_dict = {
-            'brand': line_fields[0].strip(),
-            'model': line_fields[1].strip(),
-            'color': line_fields[2].strip(),
-            'material': line_fields[3].strip(),
-            'cost_price': float(line_fields[4].strip()),
-            'sell_price': float(line_fields[5].strip()),
-            'taxes': float(line_fields[6].strip())
+            'brand': line[1]["brand"].strip(),
+            'model': line[1]["model"].strip(),
+            'color': line[1]["color"].strip(),
+            'material': line[1]["material"].strip(),
+            'cost_price': float(line[1]["cost_price"].strip()),
+            'sell_price': float(line[1]["sell_price"].strip()),
+            'taxes': float(line[1]["taxes"].strip())
         }
         serializer = PantsSerializer(data=pants_dict)
 
         if not serializer.is_valid():
-            message = (f'Line number {line_number} could not be imported, '
+            message = (f'Line number {reader.line_num} could not be imported, '
                        f'it has errors: {serializer.errors}')
             errors.append(message)
             continue
@@ -81,11 +84,11 @@ def import_csv(file_obj):
         try:
             pants = Pants(**pants_dict)
             pants.save()
-            message = (f'Line number {line_number} was succesfully '
+            message = (f'Line number {reader.line_num} was succesfully '
                        f'imported with pants.id={pants.id}')
             imported.append(message)
         except Exception as ex:  # pylint: disable=broad-except
-            message = (f'Line number {line_number} could not be '
+            message = (f'Line number {reader.line_num} could not be '
                        f'imported as a pants record. Exception: {ex}')
             errors.append(message)
 
