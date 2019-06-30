@@ -8,4 +8,6 @@ COPY . /catalog
 
 WORKDIR /catalog
 
+COPY contrib/localenv .env
+
 RUN make setup
