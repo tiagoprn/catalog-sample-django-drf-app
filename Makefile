@@ -67,7 +67,7 @@ shell: clean
 	@mkdir -p logs
 	$(DJANGO_CMD) shell
 
-runserver: clean setup-env
+runserver: clean setup-env migrate
 	@mkdir -p logs
 	$(DJANGO_CMD) runserver 0.0.0.0:8000 --noreload
 
