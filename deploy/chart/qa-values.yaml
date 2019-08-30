@@ -1,0 +1,134 @@
+environment: qa
+
+## Application is PCI?
+### values = true or false
+pci: false
+### if true uncomment line below (Reserved instance group)
+#reservedInstanceGroup: app-example
+
+## Ingress confs
+ingressPublic:
+  enabled: true
+  acmeProvider: qa.dafiti.io
+  hosts:
+  - catalog-sample.pub.qa.dafiti.io
+  paths:
+  - /
+
+ingressPrivate:
+  enabled: true
+  hosts:
+  - catalog-sample.priv.qa.dafiti.local
+  paths:
+  - /
+
+## Application confs
+### Port
+appPort: 8000
+
+### built-in TLS?
+### values = true or false
+appTLS: true
+
+### time in seconds that the cluster waits to give a teminate in the pod
+terminationGracePeriodSeconds: 30
+
+### Container size (request/limits)
+resources:
+  limits:
+    cpu: 400m
+    memory: 400Mi
+  requests:
+    cpu: 200m
+    memory: 200Mi
+
+## AWS IAM Role
+### Application needs integration with AWS services (via API calls)
+arnIAMrole: "catalog-sample"
+
+## Container image confs
+image:
+  repository: 556684128444.dkr.ecr.us-east-1.amazonaws.com/catalog-sample
+  tag: latest
+  pullPolicy: IfNotPresent
+
+## Enviroment variables
+extraEnv:
+  - name: ENABLE_CLUSTER
+    value: "false"
+  - name: DJANGO_SETTINGS_MODULE
+    value: "config.settings"
+  - name: DEBUG
+    value: "true"
+  - name: TEST
+    value: "true"
+  - name: SECRET_KEY
+    value: "changeme"
+  - name: SERVE_STATIC_FILES
+    value: "false"
+  - name: SWAGGER_USE_HTTPS
+    value: "false"
+  - name: TIME_ZONE
+    value: "UTC"
+  - name: STATICFILES_STORAGE
+    value: "django.contrib.staticfiles.storage.StaticFilesStorage"
+## Health Check
+### readinessprobe indicates whether the Container is ready to service requests.
+readinessProbe:
+  httpHeaders: []
+  path: /healthcheck/
+  ### Number of seconds after the container has started before liveness probes are initiated
+  initialDelaySeconds: 60
+  ### Number of seconds after which the probe times out
+  timeoutSeconds: 5
+  ### How often (in seconds) to perform the probe
+  periodSeconds: 30
+  ### Minimum consecutive failures for the probe to be considered failed after having succeeded
+  failureThreshold: 5
+  ### Minimum consecutive successes for the probe to be considered successful after having failed
+  successThreshold: 1
+
+### livenessprobe indicates whether the Container is running.
+livenessProbe:
+  httpHeaders: []
+  path: /healthcheck
+  ### Number of seconds after the container has started before liveness probes are initiated
+  initialDelaySeconds: 60
+  ### Number of seconds after which the probe times out
+  timeoutSeconds: 5
+  ### How often (in seconds) to perform the probe
+  periodSeconds: 30
+  ### Minimum consecutive failures for the probe to be considered failed after having succeeded
+  failureThreshold: 5
+  ### Minimum consecutive successes for the probe to be considered successful after having failed
+  successThreshold: 1
+
+## HPA (Horizontal Pod Autoscaler)
+### max number pods
+maxReplicas: 2
+### min number pods
+minReplicas: 2
+### Scaling metric type
+### values = cpu or memory
+scalingBy: cpu
+### Threshold in percent
+targetAverageUtilization: 80
+
+
+## Annotations
+annotations: []
+
+## InitContainers
+initContainers: []
+
+## Envoy
+disableEnvoy: false
+
+ ### Container size (request/limits)
+resourcesEnvoyProxy:
+  limits:
+    cpu: 40m
+    memory: 80Mi
+  requests:
+    cpu: 20m
+    memory: 50Mi
