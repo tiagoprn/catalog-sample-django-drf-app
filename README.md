@@ -1,5 +1,7 @@
 # catalog
 
+Django REST Framework showcase.
+
 This project exposes a browsable CRUD REST API that can be used on a store's pants' catalog.
 You can also mass import pants' records on the API through a CSV file, and browse and
 search through the catalog through an admin interface for convenience.
@@ -11,7 +13,7 @@ critical decision branches are covered there.
 # Technologies
 
 - Python 3.7
-- Django and Django REST Framework
+- Django 2.2.2 and Django REST Framework 3.9.4
 - Swagger
 - pytest
 - SQLite (*)
