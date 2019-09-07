@@ -1,0 +1,58 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7.3
+        environment:
+          DEBUG: False
+          SECRET_KEY: changeme
+          DB_NAME: my_database
+          DB_USER: md_user
+          DB_PASSWORD: md_pass
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+      - image: circleci/postgres:9.6.5-alpine-ram
+        environment:
+          POSTGRES_USER: md_user
+          POSTGRES_DB: my_database
+          POSTGRES_PASSWORD: md_pass
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements-dev.txt" }}
+            - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements-dev.txt
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements-dev.txt" }}
+
+      - run:
+          name: run linter
+          command: |
+            . venv/bin/activate
+            make lint
+
+      - run:
+          name: run unit tests
+          command: |
+            . venv/bin/activate
+            make test
+
+workflows:
+  version: 2
+  code-quality:
+    jobs:
+      - build:
+          filters:
+            tags:
+              ignore: /^version-.*/
