@@ -7,3 +7,10 @@ SERVE_STATIC_FILES=False
 SWAGGER_USE_HTTPS=False
 TIME_ZONE=UTC
 STATICFILES_STORAGE=django.contrib.staticfiles.storage.StaticFilesStorage
+# Database
+DB_NAME=catalog
+DB_USER=green_lantern
+DB_PASSWORD=hal_jordan
+# Below is the docker host address
+DB_HOST=172.17.0.1
+DB_PORT=5432

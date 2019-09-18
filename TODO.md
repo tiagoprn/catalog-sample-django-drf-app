@@ -6,7 +6,7 @@
     - [ ] Add a docker-compose.production.yml to run based on the tagged image
     - [ ] Add a new Makefile with a runserver to run in production
     - [ ] Revisit the README.md if everything works
-
+    - [ ] Move catalog to a public github repository.
 
 - [X] KICKSTART (branch master)
     - [x] Create the django project structure, with a `health_check` app to bootstrap swagger.

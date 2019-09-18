@@ -1,6 +1,6 @@
 # The PHONY clause below specifies the targets that should also be re-run, even if their results
 # have not changed.
-.PHONY: help logs
+.PHONY: help logs setup-env
 
 DJANGO_CMD = python catalog/manage.py
 
