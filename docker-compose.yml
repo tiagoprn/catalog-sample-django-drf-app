@@ -7,12 +7,12 @@ services:
     stdin_open: true
     tty: true
     restart: unless-stopped
-    network_mode: "host"
-    pid: "host"
-    privileged: true
-    volumes:
-      - .:/catalog
-      - ./logs:/logs
     command: make runserver
     environment:
       PYTHONUNBUFFERED: 0
+    ports:
+      - "8000:8000"
+    logging:
+      options:
+        max-size: 50m
+

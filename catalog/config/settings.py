@@ -159,11 +159,10 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         },
-        'file': {
+        'console_errors': {
             'level': 'ERROR',
-            'class': 'logging.FileHandler',
+            'class': 'logging.StreamHandler',
             'filters': ['require_debug_false'],
-            'filename': os.path.join(PROJECT_ROOT, 'logs/error.log'),
             'formatter': 'verbose'
         },
     },
@@ -173,7 +172,7 @@ LOGGING = {
             'handlers': ['console'],
         },
         'django.request': {
-            'handlers': ['file'],
+            'handlers': ['console_errors'],
             'level': 'ERROR',
             'propagate': True,
         },

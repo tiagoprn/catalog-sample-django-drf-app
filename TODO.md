@@ -1,3 +1,13 @@
+- [ ] 2019-09-18 updates
+    - [ ] Update the Dockerfile
+    - [ ] Change the db to postgresql and make the necessary adjustments.
+    - [ ] Update the docker-compose to include postgresql
+    - [ ] Add gunicorn configuration to run in production (check from my flask cookiecutter)
+    - [ ] Add a docker-compose.production.yml to run based on the tagged image
+    - [ ] Add a new Makefile with a runserver to run in production
+    - [ ] Revisit the README.md if everything works
+
+
 - [X] KICKSTART (branch master)
     - [x] Create the django project structure, with a `health_check` app to bootstrap swagger.
     - [x] Create a `core` app, with will contain the product model. Implement the REST Framework
@@ -13,8 +23,8 @@
 - [x] MILESTONE 2
     - [x] pagination on the pants get (all) view.
     - [x] django-filter on the pants get (all) view.
-    - [x] Delete current sqlite database, generate another and 
-          re-run the factory to get more sane values to explore the API.   
+    - [x] Delete current sqlite database, generate another and
+          re-run the factory to get more sane values to explore the API.
     - [x] check pagination with the django filter (check with 2 filters)
 
 - [x] MILESTONE 3
@@ -34,11 +44,11 @@
 - [-] MILESTONE FINAL
     - [x] See why the choicefields on factory are not persisting just the value, but the whole tuple.
     - [x] Include on the Makefile a command to trigger `contrib/upload_csv_to_api.sh`
-    - [x] Configure a better logging 
+    - [x] Configure a better logging
     - [x] Run the linter
     - [x] Create a README.md (explain requirements: ubuntu 18.04, docker, docker-compose to raise
       the image)
-    - [x] Create a `make setup` on the Makefile, where it is composed by: 
+    - [x] Create a `make setup` on the Makefile, where it is composed by:
         `make requirements-dev, make setup-env, make migrate, upload_sample_csv_to_import_api`
     - [x] Create a Docker container from ubuntu 18.04 image (just run Makefile commands on the
       Dockerfile - the skeleton is here at tmp/)
