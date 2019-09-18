@@ -16,12 +16,9 @@ critical decision branches are covered there.
 - Django 2.2.2 and Django REST Framework 3.9.4
 - Swagger
 - pytest
-- SQLite (*)
+- PostgreSQL 11.4
 - docker / docker-compose
 
-(*) Given the focus I got on the API working with full test coverage, I had left to change
-to Postgres at a later time, since I prefer it as a relational database. But to deliver on time,
-I had left that idea.
 
 # Development environment
 
@@ -32,9 +29,20 @@ During development I divided it into milestones. Each one is a branch on this re
 When finished a milestone, it was merged into master and than another one was created from there.
 On the file `TODO.md` you can see how I have managed the work.
 
-# Installation
+# Running the app
 
-## Requirements
+## Before anything
+
+You need a PostgreSQL database to run the app. For your convenience, I have already provided a
+container ready to be used. To start it, go to the following directory:
+
+```
+$ cd containers/posgres
+```
+
+Then, follow the SETUP instructions on the `README.md` file.
+
+## Running
 
 I recomend to **install on docker** so not to clutter your environment,
 the only requirements are **`docker` and `docker-compose`**. So any
