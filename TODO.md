@@ -1,12 +1,11 @@
-- [ ] 2019-09-18 updates
-    - [ ] Update the Dockerfile
-    - [ ] Change the db to postgresql and make the necessary adjustments.
-    - [ ] Update the docker-compose to include postgresql
-    - [ ] Add gunicorn configuration to run in production (check from my flask cookiecutter)
+- [ ] Wishlist:
+    - [ ] Add gunicorn and uwsgi configuration to run in production (check from my flask cookiecutter)
     - [ ] Add a docker-compose.production.yml to run based on the tagged image
-    - [ ] Add a new Makefile with a runserver to run in production
+    - [ ] Add a new Makefile with a gunicorn and uwsgi runserver to run in production
     - [ ] Revisit the README.md if everything works
-    - [ ] Move catalog to a public github repository.
+    - [ ] Generate a cookiecutter when finished, referencing this project.
+    - [x] 2019-09-18: Update the Dockerfile
+    - [x] 2019-09-18: Change the db to postgresql and make the necessary adjustments.
 
 - [X] KICKSTART (branch master)
     - [x] Create the django project structure, with a `health_check` app to bootstrap swagger.
