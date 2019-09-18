@@ -65,7 +65,7 @@ upload_sample_csv_to_import_api:  ## Upload a sample CSV to import endpoint to p
 
 lint: clean  ## Run pylint
 	@mkdir -p logs
-	@pylint -r y --rcfile=.pylintrc catalog/*
+	@pylint --rcfile=.pylintrc catalog/*
 
 setup: requirements-dev setup-env migrate  ## Setup the environment
 	@echo 'Setup finished.'
