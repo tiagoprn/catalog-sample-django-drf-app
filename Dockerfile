@@ -54,4 +54,4 @@ RUN make migrate
 
 EXPOSE 8000
 
-CMD [ "make", "runserver" ]
+ENTRYPOINT [ "make", "runserver" ]
