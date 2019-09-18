@@ -67,8 +67,8 @@ container: clean  ## Re(build) the app docker container.
 
 enter-container: clean  ## Enter (open a bash shell) to the app docker container.
 	@echo '=== YOU WILL NOW ENTER catalog DOCKER CONTAINER. HAVE FUN! ==='
-	@sudo docker exec -it $$(sudo docker ps | grep catalog | awk '{ print $$1}') /bin/bash
+	@sudo docker exec -it $$(sudo docker ps | grep catalog | grep api | awk '{ print $$1}') /bin/bash
 
 logs:
 	@echo '=== YOU WILL NOW BE ABLE TO CHECK THE CONTAINER LOGS IN REALTIME. HAVE FUN! ==='
-	@sudo docker logs $$(sudo docker ps | grep catalog | awk '{ print $$1}') -f
+	@sudo docker logs $$(sudo docker ps | grep catalog | grep api | awk '{ print $$1}') -f

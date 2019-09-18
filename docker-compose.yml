@@ -3,7 +3,7 @@ services:
   catalog:
     build: .
     image: tiagoprn/catalog
-    container_name: catalog
+    container_name: catalog-api
     stdin_open: true
     tty: true
     restart: unless-stopped
