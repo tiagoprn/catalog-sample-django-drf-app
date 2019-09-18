@@ -62,7 +62,7 @@ lint: clean  ## Run pylint
 setup: requirements-dev setup-env migrate  ## Setup the environment
 	@echo 'Setup finished.'
 
-container:  ## Re(build) the app docker container.
+container: clean  ## Re(build) the app docker container.
 	./rebuild_container.sh
 
 enter-container: clean  ## Enter (open a bash shell) to the app docker container.
